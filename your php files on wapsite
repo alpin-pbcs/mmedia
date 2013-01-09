@@ -1,0 +1,61 @@
+<?php
+$set[halaman]="http://yourdomain.com";
+$bilr = rand(60,80);
+$bili = rand(1,3);
+$biltr = rand(8,11);
+$bilti = rand(24,31);
+$set[ra] = $biltr;
+$set[total]=$bilr;
+$set[totali]=$bili;
+$set[r] = $bilti;
+
+/*--------------------------------------------------------------*/
+/* Millennial Media PHP Ad Coding, v.7.4.20                     */
+/* Copyright Millennial Media, Inc. 2006                        */
+/*                                                              */
+/* The following code requires PHP >= 4.3.0 and                 */
+/* allow_url_fopen 1 set in php.ini file.                       */
+/*                                                              */
+/* NOTE:                                                        */
+/* It is recommended that you lower the default_socket_timeout  */
+/* value in the php.ini file to 5 seconds.                      */
+/* This will prevent network connectivity from affecting        */
+/* page loading.                                                */
+/*--------------------------------------------------------------*/
+
+/*------- Publisher Specific Section -------*/
+$mm_placementid = your appid here;
+$mm_adserver = "ads.mp.mydas.mobi";
+
+/* The default response will be echo'd on the page     */
+/* if no Ad is returned, so any valid WML/XHTML string */
+/* is acceptable.                                      */
+$mm_default_response = "";
+
+/*------------------------------------------*/
+
+/*----------- BEGIN AD INITIALIZATION ----------*/
+/*----- PLEASE DO NOT EDIT BELOW THIS LINE -----*/
+$mm_id = "NONE";
+$mm_ua = "NONE";
+@$mm_ip = $_SERVER['REMOTE_ADDR'];
+
+if (isset($_SERVER['HTTP_USER_AGENT'] )){
+     $mm_ua = $_SERVER['HTTP_USER_AGENT'];
+}
+
+if (isset($_SERVER['HTTP_X_UP_SUBNO'])) {
+          $mm_id = $_SERVER['HTTP_X_UP_SUBNO'];
+} elseif (isset($_SERVER['HTTP_XID'])) {
+          $mm_id = $_SERVER['HTTP_XID'];
+} elseif (isset($_SERVER['HTTP_CLIENTID'])) {
+          $mm_id = $_SERVER['HTTP_CLIENTID'];
+} else {
+          $mm_id = $_SERVER['REMOTE_ADDR'];
+}
+
+$mm_url = "http://$mm_adserver/getAd.php5?apid=$mm_placementid&auid="
+          . urlencode($mm_id) . "&uip=" . urlencode($mm_ip) . "&ua="
+          . urlencode($mm_ua);
+/*------------ END AD INITIALIZATION -----------*/
+?>
